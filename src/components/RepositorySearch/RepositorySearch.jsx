@@ -1,5 +1,6 @@
 import Inputs from "../Inputs/Inputs";
 import { useState } from "react";
+import './RepositorySearch.css';
 
 const RepositorySearch = ({ onSearch }) => {
     const [repo1, setRepo1] = useState('');
