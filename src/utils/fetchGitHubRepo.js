@@ -6,17 +6,17 @@ export const fetchGitHubRepo = async (paths) => {
         const response = await fetch(url);
 
         if (response.status === 404) {
-            throw new Error(`Repository not found: ${response.status}`);
+            throw new Error(`Repository "${owner}/${repo}" not found. Check that the owner and repository name are correct.`);
         }
 
         if (response.status === 403) {
-            throw new Error(`API rate limit exceeded: ${response.status}`);
+            throw new Error(`GitHub API rate limit exceeded. Please wait a few minutes before trying again.`);
         }
 
         const data = await response.json();
         return data;
 
     } catch (error) {
-        throw new Error(`Error fetching GitHub repo: ${error.message}`);
+        throw error;
     }
 };
