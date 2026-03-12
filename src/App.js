@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import { useRepositoryData } from './hooks/useRepositoryData';
 import RepositorySearch from './components/RepositorySearch/RepositorySearch';
+import ComparisonDisplay from './components/ComparisonDisplay/ComparisonDisplay';
 
 function App() {
   const [repoPath1, setRepoPath1] = useState('');
@@ -18,7 +19,9 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className="App-title">GitHub Repo Explorer</h1>
       <RepositorySearch onSearch={handleSearch} />
+      <ComparisonDisplay repo1={repositoryData1} repo2={repositoryData2} />
     </div>
   );
 }
