@@ -37,11 +37,18 @@ function RepoCard({ data, loading, error, repoNum, winners }) {
   return (
     <div className="repo-card">
       <div className="repo-card__header">
-        <h2 className="repo-card__name">
-          <a href={data.html_url} target="_blank" rel="noreferrer">
-            {data.full_name}
-          </a>
-        </h2>
+        <div className="repo-card__identity">
+          <img
+            className="repo-card__avatar"
+            src={data.owner.avatar_url}
+            alt={data.owner.login}
+          />
+          <h2 className="repo-card__name">
+            <a href={data.html_url} target="_blank" rel="noreferrer">
+              {data.full_name}
+            </a>
+          </h2>
+        </div>
         {data.language && (
           <span className="repo-card__language">{data.language}</span>
         )}

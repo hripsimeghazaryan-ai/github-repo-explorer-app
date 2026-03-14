@@ -40,6 +40,20 @@
   margin-bottom: 8px;
 }
 
+.repo-card__identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.repo-card__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 .repo-card__name {
   font-size: 1rem;
   font-weight: 600;
