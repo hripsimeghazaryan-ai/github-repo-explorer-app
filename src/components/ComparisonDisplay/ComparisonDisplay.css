@@ -147,3 +147,14 @@
   color: #fff;
   border-color: #0969da;
 }
+
+@media (max-width: 600px) {
+  .comparison-display {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .repo-card {
+    max-width: 100%;
+  }
+}
