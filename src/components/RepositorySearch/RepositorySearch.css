@@ -13,3 +13,24 @@
     justify-content: center;
   }
 }
+
+.search-btn {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 20px;
+  background: #0969da;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-size: 200% 100%;
+  background-image: linear-gradient(120deg, #0969da 0%, #0969da 50%, #54aeff 50%, #0969da 100%);
+  background-position: 100% 0;
+  transition: background-position 0.4s ease, box-shadow 0.2s ease;
+}
+
+.search-btn:hover {
+  background-position: 0 0;
+  box-shadow: 0 4px 14px rgba(9, 105, 218, 0.4);
+}
+

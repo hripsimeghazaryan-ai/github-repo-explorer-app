@@ -17,9 +17,9 @@ const RepositorySearch = ({ onSearch }) => {
 
     return (
         <div className="repository-search-container">
-            <Inputs title="Repository 1" placeholder="Enter repository name" value={repo1} onChange={(e) => setRepo1(e.target.value)} />
-            <Inputs title="Repository 2" placeholder="Enter repository name" value={repo2} onChange={(e) => setRepo2(e.target.value)} />
-            <button onClick={handleSubmit}>Submit</button>
+            <Inputs title="Repo 1" placeholder="owner/repo" value={repo1} onChange={(e) => setRepo1(e.target.value)} />
+            <Inputs title="Repo 2" placeholder="owner/repo" value={repo2} onChange={(e) => setRepo2(e.target.value)} />
+            <button className="search-btn" onClick={handleSubmit}>Compare</button>
         </div>
     )
 }

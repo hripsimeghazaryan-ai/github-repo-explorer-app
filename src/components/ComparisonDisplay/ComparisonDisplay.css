@@ -132,20 +132,22 @@
 .repo-card__github-link {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: 6px;
-  border: 1px solid #d0d7de;
-  background: #f6f8fa;
-  color: #0969da;
+  border-radius: 20px;
+  border: none;
+  background-image: linear-gradient(120deg, #0969da 0%, #0969da 50%, #54aeff 50%, #0969da 100%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  color: #fff;
   font-size: 0.8rem;
   font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
+  transition: background-position 0.4s ease, box-shadow 0.2s ease;
 }
 
 .repo-card__github-link:hover {
-  background: #0969da;
-  color: #fff;
-  border-color: #0969da;
+  background-position: 0 0;
+  box-shadow: 0 4px 14px rgba(9, 105, 218, 0.4);
 }
 
 @media (max-width: 600px) {

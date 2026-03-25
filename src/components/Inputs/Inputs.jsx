@@ -1,3 +1,5 @@
+import './Inputs.css';
+
 const Inputs = ({ title, placeholder, value, onChange }) => {
 
     // forks_count
@@ -5,9 +7,9 @@ const Inputs = ({ title, placeholder, value, onChange }) => {
     // stargazers_count
 
   return (
-    <div>
-      <label>{title}</label>
-      <input type="text" placeholder={placeholder} onChange={onChange} value={value} />
+    <div className="input-group">
+      <label className="input-group__label">{title}</label>
+      <input className="input-group__field" type="text" placeholder={placeholder} onChange={onChange} value={value} />
     </div>
   );
 };
