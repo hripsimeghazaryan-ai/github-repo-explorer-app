@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRepositoryData } from './hooks/useRepositoryData';
 import RepositorySearch from './components/RepositorySearch/RepositorySearch';
 import ComparisonDisplay from './components/ComparisonDisplay/ComparisonDisplay';
@@ -16,6 +16,14 @@ function App() {
     repositoryData1.getData(path1);
     repositoryData2.getData(path2);
   };
+
+  useEffect(() => {
+    const saved1 = localStorage.getItem('repo1');
+    const saved2 = localStorage.getItem('repo2');
+    if (saved1 && saved2) {
+      handleSearch(saved1, saved2);
+    }
+  }, []);
 
   return (
     <div className="App">
