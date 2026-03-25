@@ -43,11 +43,7 @@ function RepoCard({ data, loading, error, repoNum, winners }) {
             src={data.owner.avatar_url}
             alt={data.owner.login}
           />
-          <h2 className="repo-card__name">
-            <a href={data.html_url} target="_blank" rel="noreferrer">
-              {data.full_name}
-            </a>
-          </h2>
+          <h2 className="repo-card__name">{data.full_name}</h2>
         </div>
         {data.language && (
           <span className="repo-card__language">{data.language}</span>
@@ -69,6 +65,9 @@ function RepoCard({ data, loading, error, repoNum, winners }) {
       </ul>
       <div className="repo-card__footer">
         <span>Last updated: {new Date(data.updated_at).toLocaleDateString()}</span>
+        <a className="repo-card__github-link" href={data.html_url} target="_blank" rel="noreferrer">
+          View on GitHub
+        </a>
       </div>
     </div>
   );
