@@ -126,3 +126,10 @@
 .stat--winner .stat__value {
   color: #1a7f37;
 }
+
+.repo-card__footer {
+  font-size: 0.875rem;
+  color: #57606a;
+  margin-top: 16px;
+  line-height: 1.4;
+}

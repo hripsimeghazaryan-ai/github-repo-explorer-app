@@ -67,6 +67,9 @@ function RepoCard({ data, loading, error, repoNum, winners }) {
           </li>
         ))}
       </ul>
+      <div className="repo-card__footer">
+        <span>Last updated: {new Date(data.updated_at).toLocaleDateString()}</span>
+      </div>
     </div>
   );
 }
