@@ -5,7 +5,6 @@ import './RepositorySearch.css';
 const RepositorySearch = ({ onSearch }) => {
     const [repo1, setRepo1] = useState(() => localStorage.getItem('repo1') || '');
     const [repo2, setRepo2] = useState(() => localStorage.getItem('repo2') || '');
-    // const [error, setError] = useState('');
 
     const handleSubmit = () => {
         if (repo1 && repo2) {
