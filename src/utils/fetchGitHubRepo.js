@@ -1,5 +1,14 @@
+const VALID_SEGMENT = /^[a-zA-Z0-9._-]+$/;
+
 export const fetchGitHubRepo = async (paths) => {
-    const [owner, repo] = paths.split('/');
+    const parts = (paths || '').split('/');
+    if (parts.length !== 2) {
+        throw new Error('Invalid format. Use "owner/repo".');
+    }
+    const [owner, repo] = parts;
+    if (!VALID_SEGMENT.test(owner) || !VALID_SEGMENT.test(repo)) {
+        throw new Error('Invalid characters in owner or repo name.');
+    }
     const url = `https://api.github.com/repos/${owner}/${repo}`;
 
     try {
