@@ -18,7 +18,7 @@ function getWinners(data1, data2) {
 function RepoCard({ data, loading, error, repoNum, winners }) {
   if (loading) {
     return (
-      <div className="repo-card repo-card--loading">
+      <div className="repo-card repo-card--loading" role="status" aria-live="polite" aria-label="Loading repository data">
         <p>Loading...</p>
       </div>
     );
@@ -26,7 +26,7 @@ function RepoCard({ data, loading, error, repoNum, winners }) {
 
   if (error) {
     return (
-      <div className="repo-card repo-card--error">
+      <div className="repo-card repo-card--error" role="alert">
         <p>{error}</p>
       </div>
     );
@@ -35,41 +35,51 @@ function RepoCard({ data, loading, error, repoNum, winners }) {
   if (!data) return null;
 
   return (
-    <div className="repo-card">
+    <article className="repo-card" aria-label={`Repository ${data.full_name}`}>
       <div className="repo-card__header">
         <div className="repo-card__identity">
           <img
             className="repo-card__avatar"
             src={data.owner.avatar_url}
-            alt={data.owner.login}
+            alt={`${data.owner.login}'s avatar`}
           />
           <h2 className="repo-card__name">{data.full_name}</h2>
         </div>
         {data.language && (
-          <span className="repo-card__language">{data.language}</span>
+          <span className="repo-card__language" aria-label={`Primary language: ${data.language}`}>{data.language}</span>
         )}
       </div>
       {data.description && (
         <p className="repo-card__description">{data.description}</p>
       )}
-      <ul className="repo-card__stats">
-        {STATS.map(({ key, label }) => (
-          <li
-            key={key}
-            className={`stat ${winners[key] === repoNum ? 'stat--winner' : ''}`}
-          >
-            <span className="stat__label">{label}</span>
-            <span className="stat__value">{data[key].toLocaleString()}</span>
-          </li>
-        ))}
+      <ul className="repo-card__stats" aria-label="Repository statistics">
+        {STATS.map(({ key, label }) => {
+          const isWinner = winners[key] === repoNum;
+          return (
+            <li
+              key={key}
+              className={`stat ${isWinner ? 'stat--winner' : ''}`}
+              aria-label={`${label}: ${data[key].toLocaleString()}${isWinner ? ' (higher)' : ''}`}
+            >
+              <span className="stat__label">{label}</span>
+              <span className="stat__value">{data[key].toLocaleString()}</span>
+            </li>
+          );
+        })}
       </ul>
       <div className="repo-card__footer">
-        <span>Last updated: {new Date(data.updated_at).toLocaleDateString()}</span>
-        <a className="repo-card__github-link" href={data.html_url} target="_blank" rel="noreferrer">
+        <span>Last updated: <time dateTime={data.updated_at}>{new Date(data.updated_at).toLocaleDateString()}</time></span>
+        <a
+          className="repo-card__github-link"
+          href={data.html_url.startsWith('https://') ? data.html_url : '#'}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`View ${data.full_name} on GitHub (opens in new tab)`}
+        >
           View on GitHub
         </a>
       </div>
-    </div>
+    </article>
   );
 }
 
@@ -84,10 +94,10 @@ function ComparisonDisplay({ repo1, repo2 }) {
   const winners = getWinners(repo1.data, repo2.data);
 
   return (
-    <div className="comparison-display">
+    <section className="comparison-display" aria-label="Comparison results">
       <RepoCard {...repo1} repoNum={1} winners={winners} />
       <RepoCard {...repo2} repoNum={2} winners={winners} />
-    </div>
+    </section>
   );
 }
 

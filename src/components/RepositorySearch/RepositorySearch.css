@@ -34,3 +34,13 @@
   box-shadow: 0 4px 14px rgba(9, 105, 218, 0.4);
 }
 
+.search-btn:focus-visible {
+  outline: 3px solid #0969da;
+  outline-offset: 3px;
+}
+
+.search-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

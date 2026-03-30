@@ -27,9 +27,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="App-title">GitHub Repo Explorer</h1>
-      <RepositorySearch onSearch={handleSearch} />
-      <ComparisonDisplay repo1={repositoryData1} repo2={repositoryData2} />
+      <header>
+        <h1 className="App-title">GitHub Repo Explorer</h1>
+      </header>
+      <main>
+        <RepositorySearch onSearch={handleSearch} />
+        <ComparisonDisplay repo1={repositoryData1} repo2={repositoryData2} />
+      </main>
     </div>
   );
 }

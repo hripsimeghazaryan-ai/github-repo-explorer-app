@@ -150,6 +150,11 @@
   box-shadow: 0 4px 14px rgba(9, 105, 218, 0.4);
 }
 
+.repo-card__github-link:focus-visible {
+  outline: 3px solid #0969da;
+  outline-offset: 3px;
+}
+
 @media (max-width: 600px) {
   .comparison-display {
     flex-direction: column;
