@@ -15,7 +15,7 @@ function getWinners(data1, data2) {
   );
 }
 
-function RepoCard({ data, loading, error, repoNum, winners }) {
+function RepositoryCard({ data, loading, error, repoNum, winners }) {
   if (loading) {
     return (
       <div className="repo-card repo-card--loading" role="status" aria-live="polite" aria-label="Loading repository data">
@@ -95,8 +95,8 @@ function ComparisonDisplay({ repo1, repo2 }) {
 
   return (
     <section className="comparison-display" aria-label="Comparison results">
-      <RepoCard {...repo1} repoNum={1} winners={winners} />
-      <RepoCard {...repo2} repoNum={2} winners={winners} />
+      <RepositoryCard {...repo1} repoNum={1} winners={winners} />
+      <RepositoryCard {...repo2} repoNum={2} winners={winners} />
     </section>
   );
 }
