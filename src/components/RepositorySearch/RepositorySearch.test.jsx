@@ -2,17 +2,20 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import RepositorySearch from './RepositorySearch';
 
 describe('RepositorySearch', () => {
+    beforeEach(() => {
+        localStorage.clear();
+    });
     it('renders two inputs and a submit button', () => {
         render(<RepositorySearch onSearch={() => {}} />);
-        expect(screen.getByText('Repository 1')).toBeInTheDocument();
-        expect(screen.getByText('Repository 2')).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /submit/i })).toBeInTheDocument();
+        expect(screen.getByText('Repo 1')).toBeInTheDocument();
+        expect(screen.getByText('Repo 2')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /compare/i })).toBeInTheDocument();
     });
 
     it('does not call onSearch when both fields are empty', () => {
         const onSearch = jest.fn();
         render(<RepositorySearch onSearch={onSearch} />);
-        fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+        fireEvent.click(screen.getByRole('button', { name: /compare/i }));
         expect(onSearch).not.toHaveBeenCalled();
     });
 
@@ -21,7 +24,7 @@ describe('RepositorySearch', () => {
         render(<RepositorySearch onSearch={onSearch} />);
         const [input1] = screen.getAllByRole('textbox');
         fireEvent.change(input1, { target: { value: 'facebook/react' } });
-        fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+        fireEvent.click(screen.getByRole('button', { name: /compare/i }));
         expect(onSearch).not.toHaveBeenCalled();
     });
 
@@ -30,7 +33,7 @@ describe('RepositorySearch', () => {
         render(<RepositorySearch onSearch={onSearch} />);
         const [, input2] = screen.getAllByRole('textbox');
         fireEvent.change(input2, { target: { value: 'torvalds/linux' } });
-        fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+        fireEvent.click(screen.getByRole('button', { name: /compare/i }));
         expect(onSearch).not.toHaveBeenCalled();
     });
 
@@ -40,7 +43,7 @@ describe('RepositorySearch', () => {
         const [input1, input2] = screen.getAllByRole('textbox');
         fireEvent.change(input1, { target: { value: 'facebook/react' } });
         fireEvent.change(input2, { target: { value: 'torvalds/linux' } });
-        fireEvent.click(screen.getByRole('button', { name: /submit/i }));
+        fireEvent.click(screen.getByRole('button', { name: /compare/i }));
         expect(onSearch).toHaveBeenCalledTimes(1);
         expect(onSearch).toHaveBeenCalledWith('facebook/react', 'torvalds/linux');
     });
