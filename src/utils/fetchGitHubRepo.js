@@ -22,10 +22,22 @@ export const fetchGitHubRepo = async (paths) => {
             throw new Error(`GitHub API rate limit exceeded. Please wait a few minutes before trying again.`);
         }
 
-        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(`GitHub API returned an unexpected error (${response.status}).`);
+        }
+
+        let data;
+        try {
+            data = await response.json();
+        } catch {
+            throw new Error('Received an invalid response from GitHub API.');
+        }
         return data;
 
     } catch (error) {
+        if (error instanceof TypeError) {
+            throw new Error('Network error. Check your internet connection and try again.');
+        }
         throw error;
     }
 };
