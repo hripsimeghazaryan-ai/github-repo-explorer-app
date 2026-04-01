@@ -40,8 +40,8 @@ function RepositoryCard({ data, loading, error, repoNum, winners }) {
         <div className="repo-card__identity">
           <img
             className="repo-card__avatar"
-            src={data.owner.avatar_url}
-            alt={`${data.owner.login}'s avatar`}
+            src={data.owner?.avatar_url}
+            alt={`${data.owner?.login}'s avatar`}
           />
           <h2 className="repo-card__name">{data.full_name}</h2>
         </div>
@@ -59,10 +59,10 @@ function RepositoryCard({ data, loading, error, repoNum, winners }) {
             <li
               key={key}
               className={`stat ${isWinner ? 'stat--winner' : ''}`}
-              aria-label={`${label}: ${data[key].toLocaleString()}${isWinner ? ' (higher)' : ''}`}
+              aria-label={`${label}: ${(data[key] ?? 0).toLocaleString()}${isWinner ? ' (higher)' : ''}`}
             >
               <span className="stat__label">{label}</span>
-              <span className="stat__value">{data[key].toLocaleString()}</span>
+              <span className="stat__value">{(data[key] ?? 0).toLocaleString()}</span>
             </li>
           );
         })}
@@ -71,7 +71,7 @@ function RepositoryCard({ data, loading, error, repoNum, winners }) {
         <span>Last updated: <time dateTime={data.updated_at}>{new Date(data.updated_at).toLocaleDateString()}</time></span>
         <a
           className="repo-card__github-link"
-          href={data.html_url.startsWith('https://') ? data.html_url : '#'}
+          href={data.html_url?.startsWith('https://') ? data.html_url : '#'}
           target="_blank"
           rel="noreferrer"
           aria-label={`View ${data.full_name} on GitHub (opens in new tab)`}
